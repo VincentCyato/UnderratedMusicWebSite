@@ -21,12 +21,18 @@
 			</div>
 		</header>
 		<p>Genre </p>
-		<select class="w3-select"><%
-				for(var i=0; i< genres.length; i++)
-				{ %>
-					  <option value="<%=genres[i].genre%>"><p class="w3-center"><%=genres[i].genre%></p></option>
-				<%} %>
-		</select>
+		<form action="/list" method="post">
+			<select onchange="this.form.submit()" name="genre" class="w3-select">			
+			<option value="all"  <%= genre == 'undefined' ? 'selected' : ''%>>All</option>	
+
+				<%
+					for(var i=0; i< genres.length; i++)
+					{ %>
+						  <option value="<%=genres[i].genre%>" <%= genres[i].genre == genre ? 'selected' : ''%>><p class="w3-center"><%=genres[i].genre%></p></option>
+					<%} %>
+			}
+			</select>
+		</form>
 		<ul class="w3-ul">
 			<%
 			for(var i=0; i < result.length; i++)

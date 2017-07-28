@@ -15,29 +15,31 @@
 			<h2 class="w3-border-bottom">Find &amp; Share your Favorite <i>Unknown</i> Bands</h2>
 			<div class="w3-bar w3-large">
 			  <a href="/" class="w3-bar-item w3-button w3-hover-text-white w3-hover-none w3-border-black w3-bottombar w3-hover-border-white w3-mobile">Home</a>
-			  <a href="/list" class="w3-bar-item w3-button w3-hover-text-white w3-hover-none w3-border-red w3-bottombar w3-hover-border-white w3-mobile">Explore</a>
-			  <a href="/submit" class="w3-bar-item w3-button w3-hover-text-white w3-hover-none w3-border-black w3-bottombar w3-hover-border-white w3-mobile">Share</a>
+			  <a href="/list" class="w3-bar-item w3-button w3-hover-text-white w3-hover-none w3-border-black w3-bottombar w3-hover-border-white w3-mobile">Explore</a>
+			  <a href="/submit" class="w3-bar-item w3-button w3-hover-text-white w3-hover-none w3-border-red w3-bottombar w3-hover-border-white w3-mobile">Share</a>
 			  <a href="/faq" class="w3-bar-item w3-button w3-hover-text-white w3-hover-none w3-border-black w3-bottombar w3-hover-border-white w3-mobile">FAQ</a>
 			</div>
 		</header>
-		<p>Share a band !
+		<p class="w3-panel">Share a band</p>
 		<form action="/add">
-			<label for="name">Band Name</label>
-			<input type="text" name="name">
-			<label for="genre">Genre</label>
-			<select name="genre" class=""><%
+			<p><label for="name">Band Name&nbsp;&nbsp;</label>
+			<input required type="text" name="name"></p>
+			<p><label for="genre">Genre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<select name="genre" class="">
+			<option value="" disabled selected>choose a genre</option>
+			<%
 				for(var i=0; i< genres.length; i++)
 				{ %>
 					  <option value="<%=genres[i].genre%>"><%=genres[i].genre%></option>
 				<%} %>
-			</select>
-			<label for="commentary">Commentary</label>
-			<input type="text" name="commentary">
+			</select><label for="otherGenre"> or  </label><input type="text" name="otherGenre" placeholder=" add another genre"></p>
+			<p><label for="commentary">Commentary</label>
+			<input required type="text" name="commentary"></p>
 			<input type="submit">
 		</form>
 
 
-		<p>For the security of the website, we do not accept links. To listen to a band, you can use deezer or youtube.</p>
+		<p>For user security, we do not accept links.</p>
 
 
 	</body>

@@ -1,6 +1,7 @@
 {
-    "name": "mon-app",
-    "version": "0.1.0",
-    "dependencies": {
-    }
+  "name": "mon-app",
+  "version": "0.1.0",
+  "dependencies": {
+    "body-parser": "^1.17.2"
+  }
 }
