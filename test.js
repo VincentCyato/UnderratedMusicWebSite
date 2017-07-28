@@ -48,7 +48,13 @@ app.get('/list', function(req, res)
 });
 
 app.get('/submit', function(req, res) {
-    res.render('submit.ejs');
+	pool.getConnection(function(err, connection){
+		connection.query("SELECT DISTINCT genre FROM `sql11187090`.`BAND`", function(err2,genres)
+		{
+			res.render('submit.ejs', { genres: genres});
+			if (err2) throw err2;
+		});
+	});
 });
 
 app.get('/like/:id', function(req, res) {

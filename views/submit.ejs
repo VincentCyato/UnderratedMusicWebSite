@@ -20,11 +20,24 @@
 			  <a href="/faq" class="w3-bar-item w3-button w3-hover-text-white w3-hover-none w3-border-black w3-bottombar w3-hover-border-white w3-mobile">FAQ</a>
 			</div>
 		</header>
+		<p>Share a band !
+		<form action="/add">
+			<label for="name">Band Name</label>
+			<input type="text" name="name">
+			<label for="genre">Genre</label>
+			<select name="genre" class=""><%
+				for(var i=0; i< genres.length; i++)
+				{ %>
+					  <option value="<%=genres[i].genre%>"><%=genres[i].genre%></option>
+				<%} %>
+			</select>
+			<label for="commentary">Commentary</label>
+			<input type="text" name="commentary">
+			<input type="submit">
+		</form>
 
-		
 
-
-
+		<p>For the security of the website, we do not accept links. To listen to a band, you can use deezer or youtube.</p>
 
 
 	</body>
