@@ -3,7 +3,8 @@ var mysql = require('mysql');
 var session = require('cookie-session');// Charge le middleware de sessions
 var bodyParser = require('body-parser'); // Charge le middleware de gestion des parametres
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
-
+var flash = require('express-flash')
+var cookieParser = require('cookie-parser');
 var connection = mysql.createConnection({
   host: "sql11.freemysqlhosting.net",
   user: "sql11187090",
@@ -22,7 +23,6 @@ var app = express();
 
 app.use(session({secret: 'todotopsecret'}))
 
-
 app.use(function(req, res, next){
     if (typeof(req.session.liketab) == 'undefined') {
         req.session.liketab = [];
@@ -35,7 +35,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/list',urlencodedParser,function(request,response){
-	console.log("genre = "+request.body.genre);
+	//console.log("genre = "+request.body.genre);
     pool.getConnection(function(err, connection){
     	if(request.body.genre=='all')
     	{
@@ -65,6 +65,44 @@ app.post('/list',urlencodedParser,function(request,response){
     	}
     	
     })
+});
+
+/* INSERT BAND */
+app.post('/submit',urlencodedParser,function(request,response){
+
+	//console.log("req.genre = " + request.body.genre);
+	//console.log("req.otherGenre = " + request.body.otherGenre);
+	if(request.body.genre==undefined && request.body.otherGenre=='')
+	{
+		console.log("no genre");
+	}
+	else
+	{
+		console.log("adding band to database");
+		var genre = request.body.genre;
+		var band = request.body.name;
+		var comment = request.body.commentary;
+		if(genre==undefined)genre=request.body.otherGenre;
+		console.log("band = " + band +"\ngenre = "+genre+"\ncommentary = "+comment);
+
+		pool.getConnection(function(err, connection){		  
+		  console.log("Connected!");
+		  var sql = "INSERT INTO  `sql11187090`.`BAND` (id,name, genre,likes,commentary) VALUES (null,?, ?, 0 , ?)";
+		  connection.query(sql,[band,genre,comment], function (err2, result) {
+		    if (err2)
+		    {
+		    	throw err2;
+		    }else
+		    {
+		    	console.log("1 record inserted");		    	
+		    }
+		    
+		  });
+		  connection.release();
+		  if (err) throw err;
+		});
+	}
+	response.redirect('/submit');
 });
 
 app.get('/list', function(req, res) 

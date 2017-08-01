@@ -20,24 +20,53 @@
 			  <a href="/faq" class="w3-bar-item w3-button w3-hover-text-white w3-hover-none w3-border-black w3-bottombar w3-hover-border-white w3-mobile">FAQ</a>
 			</div>
 		</header>
+
+	
+
+
+
 		<p class="w3-panel">Share a band</p>
-		<form action="/add">
+		<form action="/submit" method=post onsubmit="return checkForm()">
 			<p><label for="name">Band Name&nbsp;&nbsp;</label>
-			<input required type="text" name="name"></p>
+			<input required type="text" name="name" id="name"></p>
 			<p><label for="genre">Genre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-			<select name="genre" class="">
+			<select name="genre" class="" id="genre">
 			<option value="" disabled selected>choose a genre</option>
 			<%
 				for(var i=0; i< genres.length; i++)
 				{ %>
 					  <option value="<%=genres[i].genre%>"><%=genres[i].genre%></option>
 				<%} %>
-			</select><label for="otherGenre"> or  </label><input type="text" name="otherGenre" placeholder=" add another genre"></p>
+			</select><label for="otherGenre"> or  </label><input type="text" name="otherGenre" placeholder=" add another genre" id="otherGenre"></p>
 			<p><label for="commentary">Commentary</label>
-			<input required type="text" name="commentary"></p>
+			<input required type="text" name="commentary" id="commentary"></p>
 			<input type="submit">
 		</form>
 
+		<script>
+		function checkForm() {
+			console.log("band name = " + document.getElementById("name").value);
+			console.log("genre = " + document.getElementById("genre").value);
+			console.log("other genre = " + document.getElementById("otherGenre").value);
+			console.log("lala" + name);
+			var band = document.getElementById("name").value;
+			var comment = document.getElementById("commentary").value;
+			var genre = document.getElementById("genre").value;
+			var otherGenre = document.getElementById("otherGenre").value;
+			var genreFinal = genre;
+			if(genreFinal=='') genreFinal=otherGenre;
+			if(genreFinal=='')
+			{
+				alert("please choose a genre");
+				return(false);
+			}
+			else
+			{
+				return(confirm("Band : " + band + "\nGenre : " + genreFinal + "\nCommentary : " + comment + "\nYou are going to add this band"));
+			}
+		    
+		}
+		</script>
 
 		<p>For user security, we do not accept links.</p>
 
