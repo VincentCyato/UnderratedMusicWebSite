@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
-    <body class="w3-container w3-black w3-mobile">
+    <body class="w3-container w3-dark-gray w3-mobile">
 		<header>
 			<h1 class="w3-center"><i class="fa fa-resistance w3-text-red">&nbsp;</i>Underrated Music.com&nbsp;<i class="fa fa-resistance w3-text-red"></i></h1>
 			<h2 class="w3-border-bottom">Find &amp; Share your Favorite <i>Unknown</i> Bands</h2>
@@ -21,9 +21,76 @@
 			</div>
 		</header>
 
-		
+		<div class="w3-panel w3-leftbar w3-sand w3-xlarge w3-serif">
+		  <p><i>"Good music is hard to find, this website has been created to solve this problem"</i></p>
+		</div> 
 
+		<!-- SHARE -->
+		<span class="w3-tag w3-xlarge w3-padding w3-red" style="transform:rotate(-5deg)">
+			Share a band
+		</span>
+		<p></p>
+		<form action="/submit" method=post onsubmit="return checkForm()">
+			<div class="w3-row-padding">
+				<div class="w3-half">
+					<label for="name"><b>Band Name</b></label>
+					<input class="w3-border w3-round w3-input" required type="text" name="name" id="name">
+				</div>
+				<div class="w3-half"></div>
+			</div>
+			<div class="w3-row-padding">
+				<div class="w3-half">
+					<label for="genre"><b>Genre</b></label>				
+					<select name="genre" class="w3-border w3-round w3-input" id="genre">
+					<option value="" disabled selected>choose a genre</option>
+					<%
+						for(var i=0; i< genres.length; i++)
+						{ %>
+							  <option value="<%=genres[i].genre%>"><%=genres[i].genre%></option>
+						<%} %>
+					</select>
+				</div>
+				<div class="w3-half">
+					<label for="otherGenre"> <b>or</b>  </label><input class="w3-border w3-round w3-input" type="text" name="otherGenre" placeholder=" add another genre" id="otherGenre">
+				</div>
+			</div>
+			<div class="w3-row-padding">
+				<div class="w3-half">
+					<label for="commentary"><b>Commentary</b></label>
+					<input class="w3-border w3-round w3-input" required type="text" name="commentary" id="commentary">
+				</div>
+				<div class="w3-half"></div>
+			</div>
+			<p></p>
+			<input type="submit" class="w3-button w3-red w3-hover-green w3-large">
+		</form>
 
+		<script>
+		function checkForm() {
+			console.log("band name = " + document.getElementById("name").value);
+			console.log("genre = " + document.getElementById("genre").value);
+			console.log("other genre = " + document.getElementById("otherGenre").value);
+			console.log("lala" + name);
+			var band = document.getElementById("name").value;
+			var comment = document.getElementById("commentary").value;
+			var genre = document.getElementById("genre").value;
+			var otherGenre = document.getElementById("otherGenre").value;
+			var genreFinal = genre;
+			if(genreFinal=='') genreFinal=otherGenre;
+			if(genreFinal=='')
+			{
+				alert("please choose a genre");
+				return(false);
+			}
+			else
+			{
+				return(confirm("Band : " + band + "\nGenre : " + genreFinal + "\nCommentary : " + comment + "\nYou are going to add this band"));
+			}
+		    
+		}
+		</script> 
+
+		<!-- LIST -->
 
 
 

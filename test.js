@@ -31,7 +31,20 @@ app.use(function(req, res, next){
 })
 
 app.get('/', function(req, res) {
-    res.render('index.ejs');
+    
+	pool.getConnection(function(err, connection){
+		connection.query("SELECT * FROM `sql11187090`.`BAND`", function (err, result)
+			{
+			    connection.query("SELECT DISTINCT genre FROM `sql11187090`.`BAND`", function(err2,genres)
+			    {
+			    	console.log("rendering home page");
+    				res.render('index.ejs', {result: res, genres: genres});
+    				if (err2) throw err2;
+    		    });
+    		    connection.release();
+    		    if (err) throw err;
+    		});
+	});
 });
 
 app.post('/list',urlencodedParser,function(request,response){
@@ -39,7 +52,7 @@ app.post('/list',urlencodedParser,function(request,response){
     pool.getConnection(function(err, connection){
     	if(request.body.genre=='all')
     	{
-    		connection.query("SELECT * FROM `sql11187090`.`BAND`",[request.body.genre], function (err, result)
+    		connection.query("SELECT * FROM `sql11187090`.`BAND`", function (err, result)
     		{
     		    connection.query("SELECT DISTINCT genre FROM `sql11187090`.`BAND`", function(err2,genres)
     		    {
@@ -102,7 +115,7 @@ app.post('/submit',urlencodedParser,function(request,response){
 		  if (err) throw err;
 		});
 	}
-	response.redirect('/submit');
+	response.redirect('/');
 });
 
 app.get('/list', function(req, res) 
