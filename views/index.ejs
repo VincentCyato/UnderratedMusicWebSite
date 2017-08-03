@@ -155,7 +155,49 @@
 		</script>
 
 		<!-- LIST -->
+		<p></p>
+		<div class="w3-row-padding">
+			<div class="w3-half">
+				<p></p>
+				<a class="w3-button w3-xlarge w3-padding w3-red w3-hover-green" href="/list" style="transform:rotate(-5deg)">
+					Browse bands
+				</a>
+				<p></p>
+			</div>
+			<div class="w3-half">		
+				
+			</div>
+		</div>
 
+
+		<ul class="" style="list-style: none;padding-left: 0.2em">
+			<%
+			for(var i=0; i < result.length; i++)
+			{
+			%> 
+			<li class="w3-border-red w3-border" style="margin:2em 0em">
+				<div class="w3-container">
+					<h2 class=""><%= result[i].name %></h2>					
+				</div>
+
+				<div class="w3-container w3-serif w3-text-sand">
+					<p class="">
+						
+			  			<span class="w3-xlarge"><i>"<%= result[i].commentary %>"</i></span>
+		  			</p>
+
+		  			<div class="w3-large">
+							<a style="text-decoration: none;" href="/like/<%= result[i].id %>" class="fa fa-heart w3-text-red w3-hover-text-white"></a>
+							<span class="w3-text-yellow">
+								<%= result[i].likes %>
+							</span>
+						</div>
+		  			
+				</div>
+			</li> 
+			<%
+			} %>
+		</ul>
 
 
 	</body>

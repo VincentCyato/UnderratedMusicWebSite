@@ -38,7 +38,7 @@ app.get('/', function(req, res) {
 			    connection.query("SELECT DISTINCT genre FROM `sql11187090`.`BAND`", function(err2,genres)
 			    {
 			    	console.log("rendering home page");
-    				res.render('index.ejs', {result: res, genres: genres});
+    				res.render('index.ejs', {result: result, genres: genres});
     				if (err2) throw err2;
     		    });
     		    connection.release();
