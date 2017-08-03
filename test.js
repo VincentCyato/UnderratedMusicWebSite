@@ -115,7 +115,7 @@ app.post('/submit',urlencodedParser,function(request,response){
 		  if (err) throw err;
 		});
 	}
-	response.redirect('/');
+	response.redirect('/submit');
 });
 
 app.get('/list', function(req, res) 

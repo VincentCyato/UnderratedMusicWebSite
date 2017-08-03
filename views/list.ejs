@@ -20,7 +20,14 @@
 			  <a href="/faq" class="w3-bar-item w3-button w3-hover-text-white w3-hover-none w3-border-black w3-bottombar w3-hover-border-white w3-mobile">FAQ</a>
 			</div>
 		</header>
-		<p>Genre </p>
+
+
+		<p></p>
+		<span class="w3-tag w3-xlarge w3-padding w3-red" style="transform:rotate(-5deg)">
+			Browse bands
+		</span>
+		<p></p>
+		<p><b>Filter by Genre</b></p>
 		<form action="/list" method="post">
 			<select onchange="this.form.submit()" name="genre" class="w3-select">			
 			<option value="all"  <%= genre == 'undefined' ? 'selected' : ''%>>All</option>	
@@ -38,8 +45,13 @@
 			for(var i=0; i < result.length; i++)
 			{
 			%> <li class="w3-panel w3-border w3-border-red w3-hover-border-green"><p><strong><%= result[i].name %></strong></p>
-					<p class="w3-text-sand"><span style="font-size:50px;line-height:0.6em;opacity:0.5">&#10077;</span><i><%= result[i].commentary %></i></p>
-					<p> <a style="text-decoration: none;" href="/like/<%= result[i].id %>" class="fa fa-heart w3-text-red w3-hover-text-green"></a> <span class="w3-text-yellow"><%= result[i].likes %></span> </p></li> <%
+
+				<div class="w3-panel w3-leftbar w3-sand w3-xlarge w3-serif w3-sepia">
+		  			<p><i><span style="font-size:50px;line-height:0.6em;opacity:0.5">&#10077;</span><%= result[i].commentary %>	</i></p>
+				</div> 					
+
+
+					<a style="text-decoration: none;" href="/like/<%= result[i].id %>" class="fa fa-heart w3-text-red w3-hover-text-green"></a> <span class="w3-text-yellow"><%= result[i].likes %></span> </p></li> <%
 			} %>
 
 

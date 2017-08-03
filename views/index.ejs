@@ -30,7 +30,7 @@
 			Share a band
 		</span>
 		<p></p>
-		<form action="/submit" method=post onsubmit="return checkForm()">
+		<form action="/submit" method=post id="formulaire">
 			<div class="w3-row-padding">
 				<div class="w3-half">
 					<label for="name"><b>Band Name</b></label>
@@ -62,15 +62,16 @@
 				<div class="w3-half"></div>
 			</div>
 			<p></p>
-			<input type="submit" class="w3-button w3-red w3-hover-green w3-large">
+			<!--<input type="submit" class="w3-button w3-red w3-hover-green w3-large">-->
+			<p class="w3-button w3-red w3-hover-green w3-large" onclick="checkForm()">Submit</p>
 		</form>
 
 		<script>
 		function checkForm() {
-			console.log("band name = " + document.getElementById("name").value);
+			/*console.log("band name = " + document.getElementById("name").value);
 			console.log("genre = " + document.getElementById("genre").value);
 			console.log("other genre = " + document.getElementById("otherGenre").value);
-			console.log("lala" + name);
+			console.log("lala" + name);*/
 			var band = document.getElementById("name").value;
 			var comment = document.getElementById("commentary").value;
 			var genre = document.getElementById("genre").value;
@@ -79,16 +80,79 @@
 			if(genreFinal=='') genreFinal=otherGenre;
 			if(genreFinal=='')
 			{
-				alert("please choose a genre");
-				return(false);
+				//alert("please choose a genre");
+				document.getElementById('modalFail').style.display='block';
+				//return(false);
 			}
 			else
 			{
-				return(confirm("Band : " + band + "\nGenre : " + genreFinal + "\nCommentary : " + comment + "\nYou are going to add this band"));
+				document.getElementById('confirmBox').innerHTML="<p><b>Band :</b> " + band + "</p><p><b>Genre :</b> " + genreFinal + "</p><p><b>Commentary :</b> " + comment + "</p>";
+				document.getElementById('modalConfirm').style.display='block';
+				//return(confirm("Band : " + band + "\nGenre : " + genreFinal + "\nCommentary : " + comment + "\nYou are going to add this band"));
+				document.getElementById('confirmButton').onclick= function(){document.getElementById('formulaire').submit()};
 			}
-		    
+		    	
 		}
-		</script> 
+		</script>
+
+		<div id="modalFail" class="w3-modal">
+		  <div class="w3-modal-content">
+
+		 	<header class="w3-container w3-dark-gray w3-text-sand"> 
+		      <span onclick="document.getElementById('modalFail').style.display='none'" 
+		      class="w3-button w3-display-topright">&times;</span>
+		      <p>Trying to submit a band I see !</p>
+		 	</header>
+
+		      <div class="w3-container w3-red w3-text-sand">
+			      <h2>Please choose a genre..</h2>
+			  </div>
+
+			  <footer class="w3-container w3-dark-gray w3-text-sand">
+			       <p><span onclick="document.getElementById('modalFail').style.display='none'" class="w3-button w3-dark-gray w3-hover-sand w3-text-sand"><b>Got it!</b></span></p>
+
+			     </footer>
+		    </div>
+		  </div>
+		</div>
+
+		<div id="modalConfirm" class="w3-modal">
+		  <div class="w3-modal-content">
+
+		 	<header class="w3-container w3-dark-gray w3-text-sand"> 
+		      <span onclick="document.getElementById('modalConfirm').style.display='none'" 
+		      class="w3-button w3-display-topright">&times;</span>
+		      <p><b>You are going to submit a band ! Thank you!</b></p>
+		 	</header>
+
+		      <div class="w3-container w3-sand w3-text-black">
+			      <span id="confirmBox"></span>
+			  </div>
+
+			  <footer class="w3-container w3-dark-gray w3-text-sand">
+			  	<p></p>
+			       <span id=confirmButton class="w3-button w3-green w3-large">Confirm</span>
+			       <span onclick="document.getElementById('modalConfirm').style.display='none'" class="w3-button w3-red w3-large">Cancel</span>
+			      <p></p>
+			     </footer>
+		    </div>
+		  </div>
+		</div>
+
+		<script>
+		// Get the modal
+		var modalFail = document.getElementById('modalFail');
+		var modalConfirm = document.getElementById('modalConfirm');
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+		    if (event.target == modalFail) {
+		        modalFail.style.display = "none";
+		    }
+		    if (event.target == modalConfirm) {
+		        modalConfirm.style.display = "none";
+		    }
+		}
+		</script>
 
 		<!-- LIST -->
 
