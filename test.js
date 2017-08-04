@@ -33,7 +33,7 @@ app.use(function(req, res, next){
 app.get('/', function(req, res) {
     
 	pool.getConnection(function(err, connection){
-		connection.query("SELECT * FROM `sql11187090`.`BAND`", function (err, result)
+		connection.query("SELECT * FROM `sql11187090`.`BAND` order by likes desc LIMIT 5", function (err, result)
 			{
 			    connection.query("SELECT DISTINCT genre FROM `sql11187090`.`BAND`", function(err2,genres)
 			    {
@@ -52,7 +52,7 @@ app.post('/list',urlencodedParser,function(request,response){
     pool.getConnection(function(err, connection){
     	if(request.body.genre=='all')
     	{
-    		connection.query("SELECT * FROM `sql11187090`.`BAND`", function (err, result)
+    		connection.query("SELECT * FROM `sql11187090`.`BAND` order by likes desc LIMIT 50", function (err, result)
     		{
     		    connection.query("SELECT DISTINCT genre FROM `sql11187090`.`BAND`", function(err2,genres)
     		    {
@@ -65,7 +65,7 @@ app.post('/list',urlencodedParser,function(request,response){
     	}
     	else
     	{
-    		connection.query("SELECT * FROM `sql11187090`.`BAND` WHERE genre = ?",[request.body.genre], function (err, result)
+    		connection.query("SELECT * FROM `sql11187090`.`BAND` WHERE genre = ? order by likes desc LIMIT 50",[request.body.genre], function (err, result)
     		{
     		    connection.query("SELECT DISTINCT genre FROM `sql11187090`.`BAND`", function(err2,genres)
     		    {
@@ -122,7 +122,7 @@ app.get('/list', function(req, res)
 {
 	//connection.connect();
 	pool.getConnection(function(err, connection){
-		connection.query("SELECT * FROM `sql11187090`.`BAND`", function (err, result)
+		connection.query("SELECT * FROM `sql11187090`.`BAND` order by likes desc LIMIT 50", function (err, result)
 		{
 		    connection.query("SELECT DISTINCT genre FROM `sql11187090`.`BAND`", function(err2,genres)
 		    {
@@ -145,6 +145,10 @@ app.get('/submit', function(req, res) {
 			if (err2) throw err2;
 		});
 	});
+});
+
+app.get('/faq', function(req, res) {
+	res.render('faq.ejs');
 });
 
 app.get('/like/:id', function(req, res) {

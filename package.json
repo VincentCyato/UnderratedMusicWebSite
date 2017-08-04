@@ -1,7 +1,31 @@
 {
-  "name": "mon-app",
-  "version": "0.1.0",
+  "name": "UnderratedMusicDotcom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
   "dependencies": {
-    "body-parser": "^1.17.2"
-  }
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.2",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "express-flash": "^0.0.2",
+    "mysql": "^2.13.0",
+    "cookieparser": "^0.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VincentCyato/UnderratedMusicWebSite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VincentCyato/UnderratedMusicWebSite/issues"
+  },
+  "homepage": "https://github.com/VincentCyato/UnderratedMusicWebSite#readme"
 }

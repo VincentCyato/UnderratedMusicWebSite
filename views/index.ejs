@@ -169,31 +169,39 @@
 			</div>
 		</div>
 
+		<p></p>
+		<div class="w3-tag w3-round w3-red w3-large" style="padding:3px">
+		  <div class="w3-tag w3-round w3-sand w3-border w3-border-white">
+		    <i class="fa fa-arrow-down" aria-hidden="true"></i> Top 5 <i class="fa fa-arrow-down" aria-hidden="true"></i>
+		  </div>
+		</div>
 
 		<ul class="" style="list-style: none;padding-left: 0.2em">
 			<%
 			for(var i=0; i < result.length; i++)
 			{
 			%> 
-			<li class="w3-border-red w3-border" style="margin:2em 0em">
-				<div class="w3-container">
-					<h2 class=""><%= result[i].name %></h2>					
-				</div>
+			<li class="w3-border-red w3-border w3-hover-border-white" style="margin:2em 0em;box-shadow: 0em 0em 1em black">
+				<a target=blank href="https://www.google.com/search?q=<%= result[i].name %>+deezer" style="text-decoration: none">
+					<div class="w3-container">
+						<h2 class=""><%= result[i].name %></h2>					
+					</div>
 
-				<div class="w3-container w3-serif w3-text-sand">
-					<p class="">
-						
-			  			<span class="w3-xlarge"><i>"<%= result[i].commentary %>"</i></span>
-		  			</p>
+					<div class="w3-container w3-serif w3-text-sand">
+						<p class="">
+							
+				  			<span class="w3-xlarge"><i>"<%= result[i].commentary %>"</i></span>
+			  			</p>
 
-		  			<div class="w3-large">
-							<a style="text-decoration: none;" href="/like/<%= result[i].id %>" class="fa fa-heart w3-text-red w3-hover-text-white"></a>
-							<span class="w3-text-yellow">
-								<%= result[i].likes %>
-							</span>
-						</div>
-		  			
-				</div>
+			  			<div class="w3-large">
+								<a style="text-decoration: none;" href="/like/<%= result[i].id %>" class="fa fa-heart w3-text-red w3-hover-text-white"></a>
+								<span class="w3-text-yellow">
+									<%= result[i].likes %>
+								</span>
+							</div>
+			  			
+					</div>
+				</a>
 			</li> 
 			<%
 			} %>
